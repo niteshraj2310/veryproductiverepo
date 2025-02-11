@@ -23,7 +23,7 @@ jobs:
           COMMIT_MESSAGE=$(curl -s https://whatthecommit.com/index.txt)
           SIGNED_OFF_BY="Signed-off-by: niteshraj2310 <niteshraj2310@users.noreply.github.com>"
           CO_AUTHORED_BY="Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
-          echo -e "$COMMIT_MESSAGE\n\n$SIGNED_OFF_BY\n$CO_AUTHORED_BY" | git commit --allow-empty -F -
+          echo -e "$COMMIT_MESSAGE\n\n$CO_AUTHORED_BY\n$SIGNED_OFF_BY" | git commit --allow-empty -F -
       
       - name: Push changes
         env:
