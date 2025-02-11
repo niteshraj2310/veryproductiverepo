@@ -15,14 +15,14 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'niteshraj2310'
+          git config --global user.email 'niteshraj2310@users.noreply.github.com'
       
       - name: Create a blank commit
         run: |
           COMMIT_MESSAGE=$(curl -s https://whatthecommit.com/index.txt)
-          SIGNED_OFF_BY="Signed-off-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
-          CO_AUTHORED_BY="Co-authored-by: niteshraj2310 <niteshraj2310@users.noreply.github.com>"
+          SIGNED_OFF_BY="Signed-off-by: niteshraj2310 <niteshraj2310@users.noreply.github.com>"
+          CO_AUTHORED_BY="Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
           echo -e "$COMMIT_MESSAGE\n\n$SIGNED_OFF_BY\n$CO_AUTHORED_BY" | git commit --allow-empty -F -
       
       - name: Push changes
