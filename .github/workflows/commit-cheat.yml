@@ -1,0 +1,33 @@
+name: Commit Cheat
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'niteshraj2310'
+          git config --global user.email 'niteshraj2310@users.noreply.github.com'
+      
+      - name: Create a blank commit
+        run: |
+          COMMIT_MESSAGE=$(curl -s https://whatthecommit.com/index.txt)
+          SIGNED_OFF_BY="Signed-off-by: niteshraj2310 <niteshraj2310@users.noreply.github.com>"
+          CO_AUTHORED_BY="Co-authored-by: github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+          echo -e "$COMMIT_MESSAGE\n\n$CO_AUTHORED_BY\n$SIGNED_OFF_BY" | git commit --allow-empty -F -
+      
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push origin HEAD
